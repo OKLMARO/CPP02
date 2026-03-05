@@ -1,27 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 08:42:55 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/05 10:55:11 by oamairi          ###   ########.fr       */
+/*   Created: 2026/03/05 12:01:09 by oamairi           #+#    #+#             */
+/*   Updated: 2026/03/05 12:01:19 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-class Fixed
-{
-private:
-	static const int	fractional_bits = 8;
-	int					fixed_point_number;
-public:
-	Fixed();
-	Fixed(const Fixed &fixed);
-	Fixed	&operator=(const Fixed &old);
-	int		getRawBits(void) const;
-	void	setRawBits(int const raw);
-	~Fixed();
-};
+#include "Fixed.hpp"
