@@ -159,7 +159,27 @@ Fixed	&Fixed::operator--(int)
 	return current;
 }
 
-friend Fixed	operator+(Fixed lfixed, const Fixed &rfixed)
+Fixed	Fixed::operator+(const Fixed &rfixed) const
+{
+	return this->fixed_point_number + rfixed.fixed_point_number;
+}
+
+Fixed	Fixed::operator-(const Fixed &rfixed) const
+{
+	return this->fixed_point_number - rfixed.fixed_point_number;
+}
+
+Fixed	Fixed::operator*(const Fixed &rfixed) const
+{
+	return this->fixed_point_number * rfixed.fixed_point_number;
+}
+
+Fixed	Fixed::operator/(const Fixed &rfixed) const
+{
+	return this->fixed_point_number / rfixed.fixed_point_number;
+}
+
+Fixed	&Fixed::min(Fixed &lfixed, Fixed &rfixed)
 {
 	
 }

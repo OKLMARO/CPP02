@@ -29,12 +29,19 @@ public:
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 
-	Fixed			&operator++();
-	Fixed			&operator--();
-	Fixed			&operator++(int);
-	Fixed			&operator--(int);
-	Fixed			&operator=(const Fixed &old);
-	friend Fixed	operator+(Fixed lfixed, const Fixed &rfixed);
+	Fixed	&operator++();
+	Fixed	&operator--();
+	Fixed	&operator++(int);
+	Fixed	&operator--(int);
+	Fixed	&operator=(const Fixed &old);
+	Fixed	operator+(const Fixed &rfixed) const;
+	Fixed	operator-(const Fixed &rfixed) const;
+	Fixed	operator*(const Fixed &rfixed) const;
+	Fixed	operator/(const Fixed &rfixed) const;
+	static Fixed	&min(Fixed &lfixed, Fixed &rfixed);
+	static Fixed	&min(const Fixed &lfixed, const Fixed &rfixed);
+	static Fixed	&max(Fixed &lfixed, Fixed &rfixed);
+	static Fixed	&max(const Fixed &lfixed, const Fixed &rfixed);
 	~Fixed();
 };
 
