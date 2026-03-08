@@ -6,11 +6,21 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/08 14:08:44 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 14:20:25 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+int getPower(int x, int n)
+{
+	int	mult = 1;
+	for (int i = 0; i < n; i++)
+	{
+		mult = mult * x;
+	}
+	return mult;
+}
 
 Fixed::Fixed()
 {
@@ -26,34 +36,16 @@ Fixed::Fixed(const Fixed &old)
 
 Fixed::Fixed(const int nb)
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	this->fixed_point_number = nb * mult;
 	std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(const float nb)
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	this->fixed_point_number = roundf(nb * mult);
 	std::cout << "Float constructor called\n";
-}
-
-int getPower(int x, int n)
-{
-	int	mult = 1;
-	for (size_t i = 0; i < n; i++)
-	{
-		mult = mult * x;
-	}
-	return mult
 }
 
 int		Fixed::getRawBits(void) const
@@ -93,42 +85,42 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &fixed)
 	return out;
 }
 
-constexpr bool	operator==(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator==(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() == rfixed.toFloat())
 		return true;
 	return false;
 }
 
-constexpr bool	operator!=(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator!=(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() != rfixed.toFloat())
 		return true;
 	return false;
 }
 
-constexpr bool	operator<(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator<(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() < rfixed.toFloat())
 		return true;
 	return false;
 }
 
-constexpr bool	operator>(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator>(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() > rfixed.toFloat())
 		return true;
 	return false;
 }
 
-constexpr bool	operator<=(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator<=(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() <= rfixed.toFloat())
 		return true;
 	return false;
 }
 
-constexpr bool	operator>=(const Fixed &lfixed, const Fixed &rfixed)
+bool	operator>=(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.toFloat() >= rfixed.toFloat())
 		return true;
@@ -143,7 +135,7 @@ Fixed	&Fixed::operator++()
 
 Fixed	&Fixed::operator++(int)
 {
-	Fixed &current = *this;
+	Fixed current = *this;
 	this->fixed_point_number = this->fixed_point_number + 1;
 	return current;
 }
@@ -156,7 +148,7 @@ Fixed	&Fixed::operator--()
 
 Fixed	&Fixed::operator--(int)
 {
-	Fixed &current = *this;
+	Fixed current = *this;
 	this->fixed_point_number = this->fixed_point_number - 1;
 	return current;
 }
