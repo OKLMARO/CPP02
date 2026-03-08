@@ -6,18 +6,21 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:42:55 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/05 10:55:11 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 13:58:59 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef __FIXED_HPP__
+# define __FIXED_HPP__
 
 #include <iostream>
 
 class Fixed
 {
-private:
+	private:
 	static const int	fractional_bits = 8;
 	int					fixed_point_number;
-public:
+	public:
 	Fixed();
 	Fixed(const Fixed &fixed);
 	Fixed	&operator=(const Fixed &old);
@@ -25,3 +28,5 @@ public:
 	void	setRawBits(int const raw);
 	~Fixed();
 };
+
+#endif

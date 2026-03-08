@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/08 13:53:55 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 14:08:44 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ Fixed::Fixed(const float nb)
 	std::cout << "Float constructor called\n";
 }
 
+int getPower(int x, int n)
+{
+	int	mult = 1;
+	for (size_t i = 0; i < n; i++)
+	{
+		mult = mult * x;
+	}
+	return mult
+}
+
 int		Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called\n";
@@ -59,21 +69,13 @@ void	Fixed::setRawBits(int const raw)
 
 int		Fixed::toInt(void) const
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	return this->fixed_point_number / mult;
 }
 
 float	Fixed::toFloat(void) const
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	return (float) this->fixed_point_number / mult;
 }
 
@@ -141,7 +143,7 @@ Fixed	&Fixed::operator++()
 
 Fixed	&Fixed::operator++(int)
 {
-	Fixed current = *this;
+	Fixed &current = *this;
 	this->fixed_point_number = this->fixed_point_number + 1;
 	return current;
 }
@@ -154,29 +156,29 @@ Fixed	&Fixed::operator--()
 
 Fixed	&Fixed::operator--(int)
 {
-	Fixed current = *this;
+	Fixed &current = *this;
 	this->fixed_point_number = this->fixed_point_number - 1;
 	return current;
 }
 
 Fixed	Fixed::operator+(const Fixed &rfixed) const
 {
-	return this->fixed_point_number + rfixed.fixed_point_number;
+	return Fixed(this->toFloat() + rfixed.toFloat());
 }
 
 Fixed	Fixed::operator-(const Fixed &rfixed) const
 {
-	return this->fixed_point_number - rfixed.fixed_point_number;
+	return Fixed(this->toFloat() - rfixed.toFloat());
 }
 
 Fixed	Fixed::operator*(const Fixed &rfixed) const
 {
-	return this->fixed_point_number * rfixed.fixed_point_number;
+	return Fixed(this->toFloat() * rfixed.toFloat());
 }
 
 Fixed	Fixed::operator/(const Fixed &rfixed) const
 {
-	return this->fixed_point_number / rfixed.fixed_point_number;
+	return Fixed(this->toFloat() / rfixed.toFloat());
 }
 
 Fixed	&Fixed::min(Fixed &lfixed, Fixed &rfixed)
@@ -188,7 +190,7 @@ Fixed	&Fixed::min(Fixed &lfixed, Fixed &rfixed)
 
 Fixed	&Fixed::min(const Fixed &lfixed, const Fixed &rfixed)
 {
-	if (lfixed.fixed_point_number < rfixed.fixed_point_number)
+	if (lfixed.fixed_point_number > rfixed.fixed_point_number)
 		return rfixed;
 	return lfixed;
 }
@@ -202,7 +204,7 @@ Fixed	&Fixed::max(Fixed &lfixed, Fixed &rfixed)
 
 Fixed	&Fixed::max(const Fixed &lfixed, const Fixed &rfixed)
 {
-	if (lfixed.fixed_point_number > rfixed.fixed_point_number)
+	if (lfixed.fixed_point_number < rfixed.fixed_point_number)
 		return rfixed;
 	return lfixed;
 }

@@ -6,19 +6,22 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:42:55 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/05 11:25:01 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 13:59:08 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef __FIXED_HPP__
+# define __FIXED_HPP__
 
 #include <cmath>
 #include <iostream>
 
 class Fixed
 {
-private:
+	private:
 	static const int	fractional_bits = 8;
 	int					fixed_point_number;
-public:
+	public:
 	Fixed();
 	Fixed(const int nb);
 	Fixed(const float nb);
@@ -32,3 +35,5 @@ public:
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed);
+
+#endif
