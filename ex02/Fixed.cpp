@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/05 12:41:42 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 13:53:55 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,30 @@ Fixed	Fixed::operator/(const Fixed &rfixed) const
 
 Fixed	&Fixed::min(Fixed &lfixed, Fixed &rfixed)
 {
-	
+	if (lfixed.fixed_point_number > rfixed.fixed_point_number)
+		return rfixed;
+	return lfixed;
+}
+
+Fixed	&Fixed::min(const Fixed &lfixed, const Fixed &rfixed)
+{
+	if (lfixed.fixed_point_number < rfixed.fixed_point_number)
+		return rfixed;
+	return lfixed;
+}
+
+Fixed	&Fixed::max(Fixed &lfixed, Fixed &rfixed)
+{
+	if (lfixed.fixed_point_number < rfixed.fixed_point_number)
+		return rfixed;
+	return lfixed;
+}
+
+Fixed	&Fixed::max(const Fixed &lfixed, const Fixed &rfixed)
+{
+	if (lfixed.fixed_point_number > rfixed.fixed_point_number)
+		return rfixed;
+	return lfixed;
 }
 
 Fixed::~Fixed()
