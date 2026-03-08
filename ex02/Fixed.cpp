@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/08 14:20:25 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 14:26:43 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ Fixed	&Fixed::operator++()
 	return *this;
 }
 
-Fixed	&Fixed::operator++(int)
+Fixed	Fixed::operator++(int)
 {
 	Fixed current = *this;
 	this->fixed_point_number = this->fixed_point_number + 1;
@@ -146,7 +146,7 @@ Fixed	&Fixed::operator--()
 	return *this;
 }
 
-Fixed	&Fixed::operator--(int)
+Fixed	Fixed::operator--(int)
 {
 	Fixed current = *this;
 	this->fixed_point_number = this->fixed_point_number - 1;
@@ -180,7 +180,7 @@ Fixed	&Fixed::min(Fixed &lfixed, Fixed &rfixed)
 	return lfixed;
 }
 
-Fixed	&Fixed::min(const Fixed &lfixed, const Fixed &rfixed)
+const Fixed	&Fixed::min(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.fixed_point_number > rfixed.fixed_point_number)
 		return rfixed;
@@ -194,7 +194,7 @@ Fixed	&Fixed::max(Fixed &lfixed, Fixed &rfixed)
 	return lfixed;
 }
 
-Fixed	&Fixed::max(const Fixed &lfixed, const Fixed &rfixed)
+const Fixed	&Fixed::max(const Fixed &lfixed, const Fixed &rfixed)
 {
 	if (lfixed.fixed_point_number < rfixed.fixed_point_number)
 		return rfixed;
