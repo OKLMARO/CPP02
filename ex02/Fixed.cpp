@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/08 14:26:43 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 14:38:26 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,11 @@ Fixed	Fixed::operator*(const Fixed &rfixed) const
 
 Fixed	Fixed::operator/(const Fixed &rfixed) const
 {
+	if (this->fixed_point_number == 0 || rfixed.fixed_point_number == 0)
+	{
+		std::cout << "Error dived by 0 !\n";
+		return (Fixed(0));
+	}
 	return Fixed(this->toFloat() / rfixed.toFloat());
 }
 
