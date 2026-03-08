@@ -6,11 +6,21 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 08:47:27 by oamairi           #+#    #+#             */
-/*   Updated: 2026/03/05 11:25:06 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/03/08 14:32:59 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+int getPower(int x, int n)
+{
+	int	mult = 1;
+	for (int i = 0; i < n; i++)
+	{
+		mult = mult * x;
+	}
+	return mult;
+}
 
 Fixed::Fixed()
 {
@@ -26,22 +36,14 @@ Fixed::Fixed(const Fixed &old)
 
 Fixed::Fixed(const int nb)
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	this->fixed_point_number = nb * mult;
 	std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(const float nb)
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	this->fixed_point_number = roundf(nb * mult);
 	std::cout << "Float constructor called\n";
 }
@@ -59,21 +61,13 @@ void	Fixed::setRawBits(int const raw)
 
 int		Fixed::toInt(void) const
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	return this->fixed_point_number / mult;
 }
 
 float	Fixed::toFloat(void) const
 {
-	int	mult = 1;
-	for (size_t i = 0; i < fractional_bits; i++)
-	{
-		mult = mult * 2;
-	}
+	int mult = getPower(2, fractional_bits);
 	return (float) this->fixed_point_number / mult;
 }
 
